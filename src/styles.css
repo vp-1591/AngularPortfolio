@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+/* Ensure this import is correct and happens first */
+@import url('./styles/_theme.css');
+
+@font-face {
+  font-family: 'Inter'; /* Choose a name for your font */
+  src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  /* Allow the variable font to be used at a wide range of weights */
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap; /* Best practice for performance */
+}
+
+@font-face {
+  font-family: 'Orbitron'; /* Choose a name for your font */
+  src: url('/assets/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap; /* Best practice for performance */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Also add font-family here if defined in _theme.css */
+}
+
+body {
+  background-image: var(--bg);
+  color: var(--text-fill-color);
+
+  background-attachment: fixed; /* Ensures the gradient covers the whole viewport */
+  /* color: #fafafa; Text color must be bright white/very light gray */
+  min-height: 100vh;
+}

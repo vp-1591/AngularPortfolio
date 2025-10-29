@@ -1,0 +1,31 @@
+:root {
+  /* Background */
+  --bg: linear-gradient(0deg, #010a08 0%, #041e15 50%, #010a08 100%);
+
+  /* Primary Accent Color (Teal) */
+  --primary-color: #00ffcc;
+  --primary-color-20: rgba(0, 255, 204, 0.2);
+
+  /* Text and Small Elements Fill Color (Light Teal/White) */
+  --text-fill-color: #e0fff5;
+  --text-black-color: #010a08;
+
+  /* Secondary Accent Color (Subtle Teal) */
+  --secondary-color-1: #5affd0;
+  --secondary-color-2: #7ef2c4;
+
+  /* Circuit Lines Styling */
+  --circuit-stroke: var(--primary-color);
+  --circuit-shadow: 0 0 6px var(--primary-color);
+
+  /* Small Circles/Pulses Styling */
+  --pulse-fill: var(--text-fill-color);
+  --pulse-shadow: 0 0 4px var(--primary-color);
+
+  /* Text Styling */
+  --text-color: var(--text-fill-color);
+  --text-shadow: 0 0 8px var(--primary-color);
+
+  /* Button Styling */
+  --glow-shadow: 0 0 15px var(--primary-color);
+}

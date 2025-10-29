@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+// src/app/app.component.ts
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [RouterModule, HeaderComponent, FooterComponent],
+  template: `
+    <app-header />
+    <main>
+      <router-outlet />
+    </main>
+    <app-footer />
+  `,
 })
-export class App {
-  protected readonly title = signal('AngularPortfolio');
-}
+export class App {}
