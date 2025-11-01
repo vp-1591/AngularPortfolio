@@ -30,7 +30,5 @@ body {
   background-image: var(--bg);
   color: var(--text-fill-color);
 
-  background-attachment: fixed; /* Ensures the gradient covers the whole viewport */
-  /* color: #fafafa; Text color must be bright white/very light gray */
   min-height: 100vh;
 }

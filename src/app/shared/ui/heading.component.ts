@@ -6,19 +6,24 @@ import { TextComponent } from './text.component';
   imports: [TextComponent],
   selector: 'heading',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    style: 'display: block; line-height: 1.2;',
-  },
-  template: ` <text [styles]="tagStyle"><</text>
-    <text [styles]="{ fontSize: '48px' }">
+  template: ` <text [styles]="tagStyle"><&nbsp;</text>
+    <text [styles]="{ fontSize: '48px', textTransform: 'uppercase' }">
       <ng-content></ng-content>
     </text>
-    <text [styles]="tagStyle">/></text>`,
-  styles: [``],
+    <text [styles]="tagStyle">&nbsp;/></text>`,
+  styles: [
+    `
+      :host {
+        display: block;
+        line-height: 1.2;
+      }
+    `,
+  ],
 })
 export class HeadingComponent {
   protected tagStyle = {
     color: 'var(--primary-color)',
     fontSize: '48px',
+    textTransform: 'uppercase',
   };
 }

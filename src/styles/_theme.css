@@ -4,7 +4,9 @@
 
   /* Primary Accent Color (Teal) */
   --primary-color: #00ffcc;
+  --primary-color-10: rgba(0, 255, 204, 0.1);
   --primary-color-20: rgba(0, 255, 204, 0.2);
+  --primary-color-30: rgba(0, 255, 204, 0.3);
 
   /* Text and Small Elements Fill Color (Light Teal/White) */
   --text-fill-color: #e0fff5;

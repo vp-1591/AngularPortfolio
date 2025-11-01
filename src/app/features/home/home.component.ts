@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 // import { ProjectsComponent } from './projects/projects.component';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { HeroComponent } from './hero/hero.component'; // Import the HeroComponent
+import { AboutComponent } from './about/about.component';
 
 @Component({
   // standalone is default, no need to set
   selector: 'app-home',
-  imports: [HeroComponent], // Add HeroComponent to imports
+  imports: [HeroComponent, AboutComponent], // Add HeroComponent to imports
   template: `
-    <article class="hero-container">
+    <article class="home-container">
       <img
         src="/assets/hero/bg.svg"
         alt="Animated background graphic"
@@ -17,6 +18,7 @@ import { HeroComponent } from './hero/hero.component'; // Import the HeroCompone
         priority
       />
       <app-hero />
+      <about />
       <!--
       @if (true) {
       <app-projects />
@@ -46,10 +48,11 @@ import { HeroComponent } from './hero/hero.component'; // Import the HeroCompone
         /* Optional: Add slight opacity if needed */
         opacity: 0.8;
       }
-      .hero-container {
+      .home-container {
         position: relative; /* Establishes a positioning context for the SVG */
         /* Set the dimensions for the background to be visible */
         width: 100%;
+        gap: 70vh;
       }
     `,
   ],
