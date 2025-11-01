@@ -34,10 +34,6 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
   imports: [TextComponent, ButtonComponent],
   styles: [
     `
-      :host {
-        display: block;
-        padding: 20vh 80px 30vh;
-      }
       .center {
         display: flex;
         justify-content: center;

@@ -4,11 +4,12 @@ import { Component } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { HeroComponent } from './hero/hero.component'; // Import the HeroComponent
 import { AboutComponent } from './about/about.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
   // standalone is default, no need to set
   selector: 'app-home',
-  imports: [HeroComponent, AboutComponent], // Add HeroComponent to imports
+  imports: [HeroComponent, AboutComponent, ProjectsComponent], // Add HeroComponent to imports
   template: `
     <article class="home-container">
       <img
@@ -17,8 +18,9 @@ import { AboutComponent } from './about/about.component';
         class="hero-svg-layer"
         priority
       />
-      <app-hero />
-      <about />
+      <app-hero class="section" />
+      <about class="section" />
+      <projects class="section" />
       <!--
       @if (true) {
       <app-projects />
@@ -27,6 +29,10 @@ import { AboutComponent } from './about/about.component';
   `,
   styles: [
     `
+      .section {
+        display: block;
+        padding: 20vh 80px 30vh;
+      }
       .hero-svg-layer {
         /* Place the image to cover the entire container */
         position: absolute;

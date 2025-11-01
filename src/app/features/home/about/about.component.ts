@@ -42,10 +42,6 @@ import { StatComponent } from './stat.component';
   `,
   styles: [
     `
-      :host {
-        display: block;
-        padding: 20vh 80px 30vh;
-      }
       .center {
         display: flex;
         justify-content: center;
