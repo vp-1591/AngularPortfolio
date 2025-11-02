@@ -1,16 +1,17 @@
-# .github/workflows/deploy.yml
+# .github/workflows/main.yml
 
 name: Angular Portfolio CI/CD
 
 on:
   push:
     branches:
-      - master
+      - master # Use 'master' as shown in your commit history, not 'main'
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
+    # CRITICAL: These permissions are essential for the official actions
     permissions:
       contents: write
       pages: write
@@ -23,18 +24,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Recommended Node version for Angular 17+
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Build Production App
-        # defined in package.json
-        run: npm run build:prod
+        run: npm run build:prod # Builds and places files in dist/AngularPortfolio/browser
+
+      # --- NEW OFFICIAL DEPLOYMENT STEPS ---
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # This is the path to your static files (from the build step)
+          path: dist/AngularPortfolio/browser
 
       - name: Deploy to GitHub Pages
-        # The deployment uses the 'angular-cli-ghpages' logic
-        run: npm run deploy:gh
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@v4
