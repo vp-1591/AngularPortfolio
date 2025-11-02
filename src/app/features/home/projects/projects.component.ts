@@ -11,8 +11,7 @@ import { ProjectComponent } from './project.component';
       <project
         imageUri="assets/projects/portfolio.png"
         title="Portfolio Website"
-        description="Angular
-      SPA. High-fidelity Figma UI. A performance-optimized, next-gen project platform"
+        description="Angular SPA. High-fidelity Figma UI. A performance-optimized, modern-looking project"
         [tags]="['Angular', 'TypeScript', 'Figma']"
         link="https://github.com/vp-1591/AngularPortfolio"
       />

@@ -26,9 +26,16 @@ import { ScrollService } from '../../../scroll.service';
         <app-button class="glow" variant="primary" type="button" (click)="scrollTo('projects')">
           <text [styles]="{ fontWeight: 600 }" type="Inter">View My Work</text>
         </app-button>
-        <app-button variant="secondary" type="button"
-          ><text type="Inter">Download CV</text></app-button
+        <a
+          href="assets/Abrosimov_CV_Frontend.pdf"
+          download
+          class="button-link-style"
+          aria-label="Download"
         >
+          <app-button variant="secondary" type="button"
+            ><text type="Inter">Download CV</text></app-button
+          >
+        </a>
       </div>
     </div>
   `,
