@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:AngularPortfolio": "node dist/AngularPortfolio/server/server.mjs"
+    "serve:ssr:AngularPortfolio": "node dist/AngularPortfolio/server/server.mjs",
+    "build:prod": "ng build --configuration production --base-href=/AngularPortfolio/",
+    "deploy:gh": "npx angular-cli-ghpages --dir=dist/AngularPortfolio/browser"
   },
   "prettier": {
     "printWidth": 100,
@@ -42,6 +44,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "angular-cli-ghpages": "^2.0.3",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

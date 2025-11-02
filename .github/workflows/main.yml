@@ -1,0 +1,41 @@
+# .github/workflows/deploy.yml
+
+name: Angular Portfolio CI/CD
+
+on:
+  push:
+    branches:
+      - main # Or whatever your main branch is called
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Recommended Node version for Angular 17+
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Production App
+        # defined in package.json
+        run: npm run build:prod
+
+      - name: Deploy to GitHub Pages
+        # The deployment uses the 'angular-cli-ghpages' logic
+        run: npm run deploy:gh
+        env:
+          # This token is automatically provided by GitHub
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
