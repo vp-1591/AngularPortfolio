@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TextComponent } from './text.component';
 
 @Component({
-  standalone: true,
   imports: [TextComponent],
   selector: 'heading',
   changeDetection: ChangeDetectionStrategy.OnPush,

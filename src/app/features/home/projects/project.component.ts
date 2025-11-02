@@ -1,12 +1,13 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { TextComponent } from '../../../shared/ui/text.component';
 import { TagComponent } from './tag.components';
+import { CardComponent } from '../../../shared/ui/card.component';
 
 @Component({
   selector: 'project',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="project-card">
+    <card>
       <div class="project-image-container">
         <img class="project-image" [src]="imageUri" alt="Project Image" />
       </div>
@@ -29,21 +30,10 @@ import { TagComponent } from './tag.components';
       } @else {
       <div class="spacer"></div>
       }
-    </div>
+    </card>
   `,
   styles: [
     `
-      .project-card {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        box-shadow: 0 0 20px var(--primary-color-30);
-        padding: 24px;
-        border-radius: 8px;
-        border: 1px solid var(--primary-color-30);
-        overflow: hidden;
-        height: 100%;
-      }
       .project-tags {
         display: flex;
         flex-direction: row;
@@ -77,7 +67,7 @@ import { TagComponent } from './tag.components';
       }
     `,
   ],
-  imports: [TextComponent, TagComponent],
+  imports: [TextComponent, TagComponent, CardComponent],
 })
 export class ProjectComponent {
   @Input() imageUri!: string;

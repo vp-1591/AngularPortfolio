@@ -83,7 +83,6 @@ export class ButtonComponent {
     if (this.disabled) return;
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      // programmatic click will bubble and trigger host click handler (which will allow it)
       (this.host.nativeElement as HTMLElement).click();
     }
   }

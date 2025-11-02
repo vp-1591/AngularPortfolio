@@ -1,16 +1,18 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { input } from '@angular/core';
 
 @Component({
-  standalone: true,
-  imports: [NgStyle],
   selector: 'text',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    // Host Bindings for inline text flow
     style: 'display: inline-block; line-height: 1;',
   },
-  template: `<p class="text" [class]="fontClass" [ngStyle]="styles">
+  template: `<p
+    class="text"
+    [class.font-orbitron]="type() === 'Orbitron'"
+    [class.font-inter]="type() === 'Inter'"
+    [style]="styles()"
+  >
     <ng-content></ng-content>
   </p>`,
   styles: [
@@ -34,13 +36,7 @@ import { NgStyle } from '@angular/common';
   ],
 })
 export class TextComponent {
-  /** Inline styles passed to the text element as an object (e.g. { 'font-size.px': 12 }) */
-  @Input() styles: Record<string, string | number> | null = null;
+  styles = input<Record<string, string | number> | null>(null);
 
-  /** Font type selection */
-  @Input() type: 'Orbitron' | 'Inter' = 'Orbitron';
-
-  get fontClass(): string {
-    return this.type === 'Orbitron' ? 'font-orbitron' : 'font-inter';
-  }
+  type = input<'Orbitron' | 'Inter'>('Orbitron');
 }

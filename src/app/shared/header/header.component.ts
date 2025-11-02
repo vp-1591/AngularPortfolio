@@ -1,30 +1,30 @@
 import { Component, signal } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { LogoComponent } from '../ui/logo.component';
+import { TextComponent } from '../ui/text.component';
 
 @Component({
-  // standalone is default, no need to set
   selector: 'app-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LogoComponent],
+  imports: [LogoComponent, TextComponent],
 
   template: `
     <app-logo [size]="44"></app-logo>
     <div class="nav-links">
       <div class="nav-button" (click)="handleNavClick($event)">
-        <p>Home</p>
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Home</text>
       </div>
       <div class="nav-button" (click)="handleNavClick($event)">
-        <p>About</p>
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">About</text>
       </div>
       <div class="nav-button" (click)="handleNavClick($event)">
-        <p>Projects</p>
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Projects</text>
       </div>
       <div class="nav-button" (click)="handleNavClick($event)">
-        <p>Skills</p>
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Skills</text>
       </div>
       <div class="nav-button" (click)="handleNavClick($event)">
-        <p>Contact</p>
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Contact</text>
       </div>
     </div>
   `,
@@ -43,6 +43,9 @@ import { LogoComponent } from '../ui/logo.component';
       }
       .nav-button {
         cursor: pointer;
+        align-items: center;
+        display: flex;
+        justify-content: center;
       }
     `,
   ],

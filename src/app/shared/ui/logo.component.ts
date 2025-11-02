@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TextComponent } from './text.component';
+import { input } from '@angular/core';
 
 @Component({
   selector: 'app-logo',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    // Host Bindings for size and centered display
     style: 'display: flex; justify-content: center; align-items: center; border-radius: 30px;',
-    '[style.width.px]': 'size',
-    '[style.height.px]': 'size',
+    '[style.width.px]': 'size()',
+    '[style.height.px]': 'size()',
   },
   template: ` <text class="logo-text">VA</text> `,
   styles: [
@@ -24,6 +24,5 @@ import { TextComponent } from './text.component';
   imports: [TextComponent],
 })
 export class LogoComponent {
-  /** Pixel size for the SVG (both width and height) */
-  @Input() size = 44;
+  size = input(44);
 }

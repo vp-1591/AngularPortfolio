@@ -14,6 +14,7 @@ import { ProjectComponent } from './project.component';
         description="Angular
       SPA. High-fidelity Figma UI. A performance-optimized, next-gen project platform"
         [tags]="['Angular', 'TypeScript', 'Figma']"
+        link="https://github.com/vp-1591/AngularPortfolio"
       />
       <project
         imageUri="assets/projects/wallet.png"
@@ -46,11 +47,11 @@ import { ProjectComponent } from './project.component';
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: stretch; /* make children stretch to same height */
+        align-items: stretch;
       }
       project {
-        width: 28%;
-        display: flex; /* make host a flex column so its internals can stretch */
+        min-width: 28%;
+        display: flex;
         flex-direction: column;
       }
     `,
