@@ -37,5 +37,4 @@ jobs:
         # The deployment uses the 'angular-cli-ghpages' logic
         run: npm run deploy:gh
         env:
-          # This token is automatically provided by GitHub
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
