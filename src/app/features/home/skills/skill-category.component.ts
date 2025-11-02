@@ -15,7 +15,7 @@ import { TextComponent } from '../../../shared/ui/text.component';
   styles: [
     `
       :host {
-        min-width: 20vw;
+        width: 20vw;
         display: flex;
         flex-direction: column;
       }
@@ -28,7 +28,6 @@ import { TextComponent } from '../../../shared/ui/text.component';
         align-items: center;
         gap: 12px;
         flex: 1;
-        min-width: 20vw;
       }
     `,
   ],

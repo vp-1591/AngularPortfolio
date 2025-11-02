@@ -48,7 +48,7 @@ import { StatComponent } from './stat.component';
         align-items: center;
         flex-direction: column;
         width: 100%;
-        gap: 40px;
+        gap: 50px;
       }
       .about-content {
         width: 100%;

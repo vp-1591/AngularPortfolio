@@ -24,13 +24,16 @@ import { SkillCategoryComponent } from './skill-category.component';
   `,
   styles: [
     `
+      :host {
+        padding: 0, 80px;
+      }
       .center {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 100%;
-        gap: 40px;
+        gap: 50px;
       }
       .skills-content {
         display: flex;

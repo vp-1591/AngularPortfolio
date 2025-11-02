@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { CardComponent } from '../../../shared/ui/card.component';
 import { TextComponent } from '../../../shared/ui/text.component';
 
@@ -6,15 +6,34 @@ import { TextComponent } from '../../../shared/ui/text.component';
   selector: 'contact',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <card>
-      <img src="assets/contacts/mail.svg" alt="Contact Image" />
-      <text type="Orbitron" [styles]="{ fontSize: '20px', color: 'var(--primary-color)' }"
-        >Email</text
-      >
-      <text type="Inter" [styles]="{ fontSize: '16px' }">abrosimov.vadym@gmail.com</text>
+    <card class="contact-card">
+      <img class="contact-icon" [src]="imageUri()" alt="Contact Image" />
+      <text type="Inter" [styles]="{ fontSize: '16px' }">{{ title() }}</text>
+      <text type="Inter" [styles]="{ fontSize: '14px' }">{{ value() }}</text>
     </card>
   `,
-  styles: [``],
+  styles: [
+    `
+      :host {
+        width: 18vw;
+        display: flex;
+        flex-direction: column;
+      }
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+      }
+      .contact-card {
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+      }
+    `,
+  ],
   imports: [CardComponent, TextComponent],
 })
-export class ContactComponent {}
+export class ContactComponent {
+  imageUri = input<string>('');
+  title = input<string>('');
+  value = input<string>('');
+}

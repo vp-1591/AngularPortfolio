@@ -40,7 +40,7 @@ import { ProjectComponent } from './project.component';
         align-items: center;
         flex-direction: column;
         width: 100%;
-        gap: 40px;
+        gap: 50px;
       }
       .projects-content {
         gap: 32px;
@@ -50,7 +50,7 @@ import { ProjectComponent } from './project.component';
         align-items: stretch;
       }
       project {
-        min-width: 28%;
+        width: 28%;
         display: flex;
         flex-direction: column;
       }

@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { LogoComponent } from '../ui/logo.component';
 import { TextComponent } from '../ui/text.component';
+import { ScrollService } from '../../scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -11,19 +12,19 @@ import { TextComponent } from '../ui/text.component';
   template: `
     <app-logo [size]="44"></app-logo>
     <div class="nav-links">
-      <div class="nav-button" (click)="handleNavClick($event)">
+      <div class="nav-button" (click)="handleNavClick('Home')">
         <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Home</text>
       </div>
-      <div class="nav-button" (click)="handleNavClick($event)">
+      <div class="nav-button" (click)="handleNavClick('About')">
         <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">About</text>
       </div>
-      <div class="nav-button" (click)="handleNavClick($event)">
+      <div class="nav-button" (click)="handleNavClick('Projects')">
         <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Projects</text>
       </div>
-      <div class="nav-button" (click)="handleNavClick($event)">
+      <div class="nav-button" (click)="handleNavClick('Skills')">
         <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Skills</text>
       </div>
-      <div class="nav-button" (click)="handleNavClick($event)">
+      <div class="nav-button" (click)="handleNavClick('Contact')">
         <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Contact</text>
       </div>
     </div>
@@ -51,10 +52,10 @@ import { TextComponent } from '../ui/text.component';
   ],
 })
 export class HeaderComponent {
-  handleNavClick(event: MouseEvent): void {
-    console.log('Nav element was clicked from the header!', event);
-    // Add your logic here
+  private scrollService = inject(ScrollService);
+
+  handleNavClick(section: string): void {
+    this.scrollService.setScrollTarget(section);
+    console.log('Navigating to section:', section);
   }
-  // Using signals for local component state
-  isProjectsActive = signal(false);
 }
