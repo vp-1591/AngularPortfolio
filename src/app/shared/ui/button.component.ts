@@ -1,10 +1,16 @@
-import { Component, Input, HostBinding, HostListener, ElementRef } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<ng-content></ng-content>`,
+
+  host: {
+    // Host Bindings
+    '[class]': 'hostClasses()', // Binds the computed class string
+    role: 'button',
+    '[attr.tabindex]': 'tabindex()',
+    '(keydown)': 'handleKeydown($event)',
+  },
   styles: [
     `
       :host {
@@ -50,40 +56,29 @@ import { ChangeDetectionStrategy } from '@angular/core';
       }
     `,
   ],
+  template: `<ng-content></ng-content>`,
 })
 export class ButtonComponent {
-  @Input() variant: 'primary' | 'secondary' = 'primary';
-  @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() disabled = false;
+  variant = input<'primary' | 'secondary'>('primary');
+  type = input<'button' | 'submit' | 'reset'>('button');
+  disabled = input(false);
 
-  constructor(private host: ElementRef<HTMLElement>) {}
+  click = output<Event>();
+  hostClasses = computed(() => {
+    const variantClass = this.variant() === 'primary' ? 'button--primary' : 'button--secondary';
+    return `button ${variantClass}`;
+  });
 
-  @HostBinding('class') get hostClasses(): string {
-    return `button ${this.variant === 'primary' ? 'button--primary' : 'button--secondary'}`;
-  }
+  tabindex = computed(() => (this.disabled() ? -1 : 0));
 
-  @HostBinding('attr.role') role = 'button';
-  @HostBinding('attr.tabindex') get tabindex() {
-    return this.disabled ? -1 : 0;
-  }
-  @HostBinding('attr.aria-disabled') get ariaDisabled() {
-    return this.disabled ? 'true' : 'false';
-  }
+  handleKeydown(event: KeyboardEvent): void {
+    if (this.disabled()) return;
 
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
-    if (this.disabled) {
+    // Only handle Enter key (ignoring space since you only asked for Enter)
+    if (event.key === 'Enter') {
       event.preventDefault();
-      event.stopImmediatePropagation();
-    }
-  }
-
-  @HostListener('keydown', ['$event'])
-  onKeydown(event: KeyboardEvent) {
-    if (this.disabled) return;
-    if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault();
-      (this.host.nativeElement as HTMLElement).click();
+      // Trigger the native click, which will fire the external (click) output
+      this.click.emit(event);
     }
   }
 }

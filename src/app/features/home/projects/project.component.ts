@@ -7,7 +7,7 @@ import { CardComponent } from '../../../shared/ui/card.component';
   selector: 'project',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <card>
+    <card style="background-color: var(--blur-color);">
       <div class="project-image-container">
         <img class="project-image" [src]="imageUri" alt="Project Image" />
       </div>

@@ -9,7 +9,7 @@ import { TextComponent } from '../../../shared/ui/text.component';
     <img class="skill-icon" [src]="imageUri()" alt="Frontend" />
     <text type="Orbitron" [styles]="{ fontSize: '20px' }">{{ title() }}</text>
     @for (skill of skills(); track $index) {
-    <text type="Inter" [styles]="{ fontSize: '14px' }"> {{ skill }} </text>
+    <text type="Inter" [styles]="{ fontSize: '14px', textAlign: 'center' }"> {{ skill }} </text>
     }
   </card>`,
   styles: [

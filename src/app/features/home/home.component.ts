@@ -1,4 +1,12 @@
-import { Component, effect, ElementRef, inject, viewChild } from '@angular/core';
+import {
+  Component,
+  contentChild,
+  effect,
+  ElementRef,
+  inject,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { HeroComponent } from './hero/hero.component';
 import { AboutComponent } from './about/about.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -17,18 +25,18 @@ import { ScrollService } from '../../scroll.service';
         class="hero-svg-layer"
         priority
       />
-      <app-hero #hero class="section" />
-      <about #about class="section" />
-      <projects #projects class="section" />
-      <skills #skills class="section" />
-      <contacts #contacts class="section last" />
+      <app-hero id="hero" class="section" />
+      <about id="about" class="section" />
+      <projects id="projects" class="section" />
+      <skills id="skills" class="section" />
+      <contacts id="contact" class="section last" />
     </article>
   `,
   styles: [
     `
       .section {
         display: block;
-        padding: 20vh 80px 30vh;
+        padding: 25vh 80px 25vh;
       }
       .last {
         padding-bottom: 20vh;
@@ -59,45 +67,13 @@ import { ScrollService } from '../../scroll.service';
 export class HomeComponent {
   private scrollService = inject(ScrollService);
 
-  heroSection = viewChild<ElementRef>('hero');
-  aboutSection = viewChild<ElementRef>('about');
-  projectsSection = viewChild<ElementRef>('projects');
-  skillsSection = viewChild<ElementRef>('skills');
-  contactSection = viewChild<ElementRef>('contacts');
-
-  // Map section names to their ElementRef signal
-  private sectionsMap = new Map([
-    ['Home', this.heroSection],
-    ['About', this.aboutSection],
-    ['Projects', this.projectsSection],
-    ['Skills', this.skillsSection],
-    ['Contact', this.contactSection],
-  ]);
-
   constructor() {
-    // 1. Create an effect to react when the scrollTarget signal changes
     effect(() => {
       const sectionName = this.scrollService.scrollTarget();
       if (sectionName) {
-        this.scrollToSection(sectionName);
+        let el = document.getElementById(sectionName.sectionName);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
-  }
-
-  scrollToSection(sectionName: string): void {
-    console.log('Scrolling to section:', sectionName);
-    const sectionSignal = this.sectionsMap.get(sectionName);
-
-    if (sectionSignal) {
-      const elementRef = sectionSignal();
-
-      if (elementRef) {
-        console.log('ElementRef: ', elementRef);
-        elementRef.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    }
   }
 }

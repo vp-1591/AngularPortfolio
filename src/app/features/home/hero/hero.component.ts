@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TextComponent } from '../../../shared/ui/text.component';
 import { ButtonComponent } from '../../../shared/ui/button.component';
+import { ScrollService } from '../../../scroll.service';
 
 @Component({
   selector: 'app-hero',
@@ -22,9 +23,9 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
         </text>
       </div>
       <div class="hero-buttons">
-        <app-button class="glow" variant="primary" type="button"
-          ><text [styles]="{ fontWeight: 600 }" type="Inter">View My Work</text></app-button
-        >
+        <app-button class="glow" variant="primary" type="button" (click)="scrollTo('projects')">
+          <text [styles]="{ fontWeight: 600 }" type="Inter">View My Work</text>
+        </app-button>
         <app-button variant="secondary" type="button"
           ><text type="Inter">Download CV</text></app-button
         >
@@ -69,4 +70,11 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
     `,
   ],
 })
-export class HeroComponent {}
+export class HeroComponent {
+  private scrollService = inject(ScrollService);
+
+  scrollTo(section: string): void {
+    this.scrollService.setScrollTarget(section);
+    console.log('Navigating to section:', section);
+  }
+}
