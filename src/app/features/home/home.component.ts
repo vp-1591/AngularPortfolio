@@ -30,6 +30,7 @@ import { ScrollService } from '../../scroll.service';
       <projects id="projects" class="section" />
       <skills id="skills" class="section" />
       <contacts id="contact" class="section last" />
+      <div class="spacer"></div>
     </article>
   `,
   styles: [
@@ -60,6 +61,9 @@ import { ScrollService } from '../../scroll.service';
         position: relative;
         width: 100%;
         gap: 70vh;
+      }
+      .spacer {
+        height: 10vh;
       }
     `,
   ],
