@@ -34,7 +34,6 @@ import { Component, ChangeDetectionStrategy, computed, input, output } from '@an
       :host(.button--primary) {
         background: var(--primary-color);
         color: var(--text-black-color);
-
         border: 2px solid transparent;
       }
 

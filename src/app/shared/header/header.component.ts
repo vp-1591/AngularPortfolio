@@ -34,7 +34,6 @@ import { map } from 'rxjs/operators';
           [styles]="{
             fontSize: '32px',
             fontWeight: 500,
-            fontStyle: 'italic'
           }"
           >{{ link.label }}</text
         >
@@ -87,7 +86,7 @@ import { map } from 'rxjs/operators';
 
       .mobile-drawer {
         position: fixed;
-        top: 94px;
+        top: 84px;
         right: -110%;
         height: 80%;
         width: 100%;
@@ -119,7 +118,7 @@ import { map } from 'rxjs/operators';
       /* --- MOBILE STYLES (Max width for mobile devices) --- */
       @media (max-width: 768px) {
         :host {
-          padding: 30px 30px 20px;
+          padding: 20px 30px;
         }
         .nav-links {
           display: none;
@@ -146,8 +145,6 @@ export class HeaderComponent {
   private scrollService = inject(ScrollService);
   private breakpointObserver = inject(BreakpointObserver);
 
-  isDrawerOpen = signal(false);
-
   isMobileLayout = toSignal(
     this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
@@ -156,6 +153,8 @@ export class HeaderComponent {
     // Now the initial value only needs to be the boolean type
     { initialValue: false }
   );
+
+  isDrawerOpen = signal(false);
 
   handleNavClick(section: string): void {
     this.scrollService.setScrollTarget(section);

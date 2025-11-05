@@ -14,5 +14,15 @@ import { FooterComponent } from './shared/footer/footer.component';
     </main>
     <app-footer />
   `,
+  styles: [
+    `
+      :host {
+        overflow: hidden;
+        width: 100vw;
+        min-height: 100vh;
+        display: block;
+      }
+    `,
+  ],
 })
 export class App {}

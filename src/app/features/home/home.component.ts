@@ -65,6 +65,15 @@ import { ScrollService } from '../../scroll.service';
       .spacer {
         height: 10vh;
       }
+      @media (max-width: 768px) {
+        .hero-svg-layer {
+          width: 100vw;
+          height: 75vw;
+        }
+        .section {
+          padding: 25vh 20px 25vh;
+        }
+      }
     `,
   ],
 })

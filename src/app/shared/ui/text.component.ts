@@ -21,7 +21,6 @@ import { input } from '@angular/core';
         margin: 0;
         padding: 0;
         line-height: 1;
-        font-weight: 400;
       }
 
       /* Font family helpers */
