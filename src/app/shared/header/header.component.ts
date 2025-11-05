@@ -1,8 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { LogoComponent } from '../ui/logo.component';
 import { TextComponent } from '../ui/text.component';
 import { ScrollService } from '../../scroll.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -10,29 +13,35 @@ import { ScrollService } from '../../scroll.service';
   imports: [LogoComponent, TextComponent],
 
   template: `
-    <app-logo
-      [size]="44"
-      style="
-        cursor: pointer;"
-      (click)="handleNavClick('hero')"
-    ></app-logo>
+    <app-logo [size]="44" class="logo" (click)="handleNavClick('hero')"></app-logo>
+    @if (!isMobileLayout()) {
     <div class="nav-links">
-      <div class="nav-button" (click)="handleNavClick('hero')">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Home</text>
+      @for (link of navLinks; track link.section) {
+      <div class="nav-button" (click)="handleNavClick(link.section)">
+        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">{{ link.label }}</text>
       </div>
-      <div class="nav-button" (click)="handleNavClick('about')">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">About</text>
-      </div>
-      <div class="nav-button" (click)="handleNavClick('projects')">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Projects</text>
-      </div>
-      <div class="nav-button" (click)="handleNavClick('skills')">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Skills</text>
-      </div>
-      <div class="nav-button" (click)="handleNavClick('contact')">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">Contact</text>
-      </div>
+      }
     </div>
+    } @else {
+    <div class="hamburger-menu" (click)="toggleDrawer()">
+      <text type="Inter" [styles]="{ fontSize: '24px' }">☰</text>
+    </div>
+    <div class="mobile-drawer" [class.open]="isDrawerOpen()">
+      @for (link of navLinks; track link.section) {
+      <div class="drawer-link" (click)="handleNavClick(link.section)">
+        <text
+          type="Inter"
+          [styles]="{
+            fontSize: '32px',
+            fontWeight: 500,
+            fontStyle: 'italic'
+          }"
+          >{{ link.label }}</text
+        >
+      </div>
+      }
+    </div>
+    }
   `,
   styles: [
     `
@@ -41,16 +50,27 @@ import { ScrollService } from '../../scroll.service';
         justify-content: space-between;
         padding: 12px 40px;
         border-bottom: 1px solid var(--primary-color-20);
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        align-items: center;
+      }
+      :host::before {
+        content: '';
+        display: flex;
         backdrop-filter: blur(8px);
         background-color: var(--blur-color);
-        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
       }
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        flex-direction: row;
+      .logo {
+        cursor: pointer;
       }
       .nav-button {
         cursor: pointer;
@@ -58,14 +78,93 @@ import { ScrollService } from '../../scroll.service';
         display: flex;
         justify-content: center;
       }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        flex-direction: row;
+      }
+
+      .mobile-drawer {
+        position: fixed;
+        top: 94px;
+        right: -110%;
+        height: 80%;
+        width: 100%;
+        z-index: 11;
+        transition: right 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 0 30%;
+
+        backdrop-filter: blur(10px);
+        background-color: var(--blur-color);
+      }
+
+      .drawer-link {
+        cursor: pointer;
+        border-bottom: 1px solid var(--primary-color-20);
+        padding: 12px 0;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-drawer.open {
+        right: 0;
+      }
+
+      /* --- MOBILE STYLES (Max width for mobile devices) --- */
+      @media (max-width: 768px) {
+        :host {
+          padding: 30px 30px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger-menu {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          padding: 12px;
+        }
+      }
     `,
   ],
 })
 export class HeaderComponent {
+  navLinks = [
+    { label: 'Home', section: 'hero' },
+    { label: 'About', section: 'about' },
+    { label: 'Projects', section: 'projects' },
+    { label: 'Skills', section: 'skills' },
+    { label: 'Contact', section: 'contact' },
+  ];
+
   private scrollService = inject(ScrollService);
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isDrawerOpen = signal(false);
+
+  isMobileLayout = toSignal(
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      // Map the full state object to just the boolean 'matches' value
+      .pipe(map((state) => state.matches)),
+    // Now the initial value only needs to be the boolean type
+    { initialValue: false }
+  );
 
   handleNavClick(section: string): void {
     this.scrollService.setScrollTarget(section);
-    console.log('Navigating to section:', section);
+    if (this.isMobileLayout()) {
+      this.isDrawerOpen.set(false);
+    }
+  }
+
+  toggleDrawer(): void {
+    this.isDrawerOpen.update((value) => !value);
   }
 }
