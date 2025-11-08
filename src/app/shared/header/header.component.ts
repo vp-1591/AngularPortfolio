@@ -86,9 +86,9 @@ import { map } from 'rxjs/operators';
 
       .mobile-drawer {
         position: fixed;
-        top: 84px;
+        top: 68px;
         right: -110%;
-        height: 80%;
+        height: 80vh;
         width: 100%;
         z-index: 11;
         transition: right 0.3s ease-in-out;
@@ -118,7 +118,7 @@ import { map } from 'rxjs/operators';
       /* --- MOBILE STYLES (Max width for mobile devices) --- */
       @media (max-width: 768px) {
         :host {
-          padding: 20px 30px;
+          padding: 12px 30px;
         }
         .nav-links {
           display: none;
