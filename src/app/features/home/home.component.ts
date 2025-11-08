@@ -19,12 +19,7 @@ import { ScrollService } from '../../scroll.service';
   imports: [HeroComponent, AboutComponent, ProjectsComponent, SkillsComponent, ContactsComponent],
   template: `
     <article class="home-container">
-      <img
-        src="/assets/hero/bg.svg"
-        alt="Animated background graphic"
-        class="hero-svg-layer"
-        priority
-      />
+      <img [src]="svgUri" alt="Animated background graphic" class="hero-svg-layer" priority />
       <app-hero id="hero" class="section" />
       <about id="about" class="section" />
       <projects id="projects" class="section" />
@@ -89,4 +84,6 @@ export class HomeComponent {
       }
     });
   }
+
+  svgUri = 'assets/hero/bg.svg';
 }
