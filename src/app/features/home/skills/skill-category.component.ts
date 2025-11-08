@@ -7,9 +7,9 @@ import { TextComponent } from '../../../shared/ui/text.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<card class="skill-card">
     <img class="skill-icon" [src]="imageUri()" alt="Frontend" />
-    <text type="Orbitron" [styles]="{ fontSize: '20px' }">{{ title() }}</text>
+    <text type="Orbitron" class="title-skill">{{ title() }}</text>
     @for (skill of skills(); track $index) {
-    <text type="Inter" [styles]="{ fontSize: '14px', textAlign: 'center' }"> {{ skill }} </text>
+    <text type="Inter" class="tech-skill" [styles]="{ textAlign: 'center' }"> {{ skill }} </text>
     }
   </card>`,
   styles: [
@@ -29,10 +29,26 @@ import { TextComponent } from '../../../shared/ui/text.component';
         gap: 12px;
         flex: 1;
       }
+      .tech-skill {
+        font-size: 14px;
+      }
+      .title-skill {
+        font-size: 20px;
+      }
 
       @media (max-width: 768px) {
         :host {
           width: 50%;
+        }
+        .skill-icon {
+          width: 32px;
+          height: 32px;
+        }
+        .tech-skill {
+          font-size: 12px;
+        }
+        .title-skill {
+          font-size: 18px;
         }
       }
     `,
