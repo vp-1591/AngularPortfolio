@@ -24,9 +24,10 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
             React, React Native, and TypeScript. I enjoy transforming ideas into clean, responsive,
             and user-friendly interfaces.
           </text>
+          @if (!isMobileLayout()) {
           <text
             [styles]="{
-              lineHeight: isMobileLayout() ? '24px' : '30px'
+              lineHeight: '30px'
             }"
             type="Inter"
           >
@@ -34,6 +35,7 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
             developer who builds scalable, well-designed applications. My goal is to continuously
             improve and contribute to real-world projects that make an impact.
           </text>
+          }
         </div>
         <div class="about-stats">
           <stat statValue="3+" statLabel="Projects Completed" />
@@ -49,7 +51,6 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
         display: flex;
         justify-content: center;
         gap: 50px;
-        padding: 35px;
         flex-direction: row;
       }
       .about-description {
@@ -58,6 +59,7 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
         gap: 24px;
         width: 40vw;
         font-size: 18px;
+        text-wrap: pretty;
       }
       .about-stats {
         display: flex;
@@ -74,6 +76,7 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
 
         .about-description {
           width: 100%;
+          text-align: center;
         }
 
         .about-description {
