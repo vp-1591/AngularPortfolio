@@ -6,10 +6,8 @@ import { TextComponent } from '../ui/text.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <footer>
-      <app-logo [size]="44" />
-      <text type="Inter" [styles]="{ fontSize: '16px' }">
-        {{ currentYear }} © Vadym Abrosimov
-      </text>
+      <app-logo />
+      <text type="Inter" class="footer-text"> {{ currentYear }} © Vadym Abrosimov </text>
     </footer>
   `,
   styles: [
@@ -22,6 +20,11 @@ import { TextComponent } from '../ui/text.component';
         border-top: 1px solid var(--primary-color-20);
         padding: 33px;
         gap: 16px;
+      }
+      @media (max-width: 768px) {
+        .footer-text {
+          font-size: 14px;
+        }
       }
     `,
   ],

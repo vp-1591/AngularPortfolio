@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
   imports: [LogoComponent, TextComponent],
 
   template: `
-    <app-logo [size]="44" class="logo" (click)="handleNavClick('hero')"></app-logo>
+    <app-logo class="logo" (click)="handleNavClick('hero')"></app-logo>
     @if (!isMobileLayout()) {
     <div class="nav-links">
       @for (link of navLinks; track link.section) {
