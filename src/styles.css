@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Inter'; /* Choose a name for your font */
-  src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('assets/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
   /* Allow the variable font to be used at a wide range of weights */
   font-weight: 100 900;
   font-style: normal;
@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: 'Orbitron'; /* Choose a name for your font */
-  src: url('/assets/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+  src: url('assets/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
   font-weight: 400 900;
   font-style: normal;
   font-display: swap; /* Best practice for performance */
