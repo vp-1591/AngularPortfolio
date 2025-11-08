@@ -34,26 +34,24 @@ import { CardComponent } from '../../../shared/ui/card.component';
   `,
   styles: [
     `
+      :host {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+      }
       .project-tags {
         display: flex;
         flex-direction: row;
         gap: 8px;
       }
       .project-image {
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
         border-radius: 4px;
+        width: 100%;
+        height: 100%;
       }
       .project-image-container {
-        width: 100%;
-        height: 100%;
         border-radius: 8px;
         overflow: hidden;
-      }
-      .project-image {
-        width: 100%;
-        height: 100%;
       }
       .spacer {
         height: 18px;
@@ -64,6 +62,15 @@ import { CardComponent } from '../../../shared/ui/card.component';
         align-items: center;
         gap: 4px;
         text-decoration: none;
+      }
+
+      @media (max-width: 768px) {
+        :host {
+          width: 70vw;
+          padding: 20px 0;
+          flex-shrink: 0;
+          scroll-snap-align: center; /* or start/end */
+        }
       }
     `,
   ],
