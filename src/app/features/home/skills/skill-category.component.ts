@@ -29,6 +29,12 @@ import { TextComponent } from '../../../shared/ui/text.component';
         gap: 12px;
         flex: 1;
       }
+
+      @media (max-width: 768px) {
+        :host {
+          width: 50%;
+        }
+      }
     `,
   ],
   imports: [CardComponent, TextComponent],
