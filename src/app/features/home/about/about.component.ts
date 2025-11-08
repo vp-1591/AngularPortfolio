@@ -23,9 +23,10 @@ import { map } from 'rxjs';
             React, React Native, and TypeScript. I enjoy transforming ideas into clean, responsive,
             and user-friendly interfaces.
           </text>
+          @if (!isMobileLayout()) {
           <text
             [styles]="{
-              lineHeight: isMobileLayout() ? '24px' : '30px'
+              lineHeight: '30px'
             }"
             type="Inter"
           >
@@ -33,6 +34,7 @@ import { map } from 'rxjs';
             developer who builds scalable, well-designed applications. My goal is to continuously
             improve and contribute to real-world projects that make an impact.
           </text>
+          }
         </div>
         <div class="about-stats">
           <stat statValue="3+" statLabel="Projects Completed" />
@@ -56,7 +58,6 @@ import { map } from 'rxjs';
         display: flex;
         justify-content: center;
         gap: 50px;
-        padding: 35px;
         flex-direction: row;
       }
       .about-description {
@@ -65,6 +66,7 @@ import { map } from 'rxjs';
         gap: 24px;
         width: 40vw;
         font-size: 18px;
+        text-wrap: pretty;
       }
       .about-stats {
         display: flex;
@@ -81,6 +83,7 @@ import { map } from 'rxjs';
 
         .about-description {
           width: 100%;
+          text-align: center;
         }
 
         .about-description {
