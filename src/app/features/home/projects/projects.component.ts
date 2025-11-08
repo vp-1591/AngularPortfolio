@@ -27,7 +27,6 @@ import { map } from 'rxjs';
         link="https://github.com/vp-1591/WalletApp"
       />
       <project
-        class="last-child"
         imageUri="assets/projects/chat.png"
         title="Chat Web App"
         description="Real-time messaging platform. Dynamic Socket.io connection supports live status and instant chat."
