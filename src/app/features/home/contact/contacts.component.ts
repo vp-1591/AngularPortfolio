@@ -4,57 +4,52 @@ import { ContactComponent } from './contact.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
 
 @Component({
   selector: 'contacts',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <div class="center">
-    <heading>Contact</heading>
+  template: `
+    <section-center>
+      <heading>Contact</heading>
 
-    @if (isMobileLayout()) {
-    <div class="scroll-wrapper">
-      <contact
-        imageUri="assets/contacts/mail.svg"
-        title="Email"
-        value="abrosimov.vadym@gmail.com"
-      />
-      <contact imageUri="assets/contacts/phone.svg" title="Phone" value="+48 575 086 515" />
-      <contact imageUri="assets/contacts/location.svg" title="Location" value="Warsaw, Poland" />
-    </div>
-    }@else{
-    <div class="contacts-content">
-      <contact
-        imageUri="assets/contacts/mail.svg"
-        title="Email"
-        value="abrosimov.vadym@gmail.com"
-      />
-      <contact imageUri="assets/contacts/phone.svg" title="Phone" value="+48 575 086 515" />
-      <contact imageUri="assets/contacts/location.svg" title="Location" value="Warsaw, Poland" />
-    </div>
-    }
-    <div class="social-container">
-      <a href="https://github.com/vp-1591" target="_blank" rel="noopener noreferrer">
-        <img src="assets/contacts/github.svg" alt="github" />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/vadym-abrosimov/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src="assets/contacts/linkedin.svg" alt="linkedin" />
-      </a>
-    </div>
-  </div>`,
+      @if (isMobileLayout()) {
+      <div class="scroll-wrapper">
+        <contact
+          imageUri="assets/contacts/mail.svg"
+          title="Email"
+          value="abrosimov.vadym@gmail.com"
+        />
+        <contact imageUri="assets/contacts/phone.svg" title="Phone" value="+48 575 086 515" />
+        <contact imageUri="assets/contacts/location.svg" title="Location" value="Warsaw, Poland" />
+      </div>
+      }@else{
+      <div class="contacts-content">
+        <contact
+          imageUri="assets/contacts/mail.svg"
+          title="Email"
+          value="abrosimov.vadym@gmail.com"
+        />
+        <contact imageUri="assets/contacts/phone.svg" title="Phone" value="+48 575 086 515" />
+        <contact imageUri="assets/contacts/location.svg" title="Location" value="Warsaw, Poland" />
+      </div>
+      }
+      <div class="social-container">
+        <a href="https://github.com/vp-1591" target="_blank" rel="noopener noreferrer">
+          <img src="assets/contacts/github.svg" alt="github" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/vadym-abrosimov/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="assets/contacts/linkedin.svg" alt="linkedin" />
+        </a>
+      </div>
+    </section-center>
+  `,
   styles: [
     `
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        gap: 50px;
-      }
       .contacts-content {
         display: flex;
         flex-direction: row;
@@ -86,7 +81,7 @@ import { map } from 'rxjs';
       }
     `,
   ],
-  imports: [HeadingComponent, ContactComponent],
+  imports: [HeadingComponent, ContactComponent, SectionCenterComponent],
 })
 export class ContactsComponent {
   private breakpointObserver = inject(BreakpointObserver);

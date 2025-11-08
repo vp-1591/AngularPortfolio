@@ -5,11 +5,12 @@ import { ScrollService } from '../../../scroll.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
+import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
 
 @Component({
   selector: 'app-hero',
   template: `
-    <div class="center">
+    <section-center>
       <div class="hero-head">
         <text class="title" type="Orbitron">Vadym Abrosimov</text>
         <div class="subtitle">
@@ -38,19 +39,11 @@ import { map } from 'rxjs/operators';
           >
         </a>
       </div>
-    </div>
+    </section-center>
   `,
-  imports: [TextComponent, ButtonComponent],
+  imports: [TextComponent, ButtonComponent, SectionCenterComponent],
   styles: [
     `
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        gap: 40px;
-      }
       .subtitle {
         font-size: 30px;
         display: flex;

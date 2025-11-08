@@ -1,12 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeadingComponent } from '../../../shared/ui/heading.component';
 import { SkillCategoryComponent } from './skill-category.component';
+import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
 
 @Component({
   selector: 'skills',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="center">
+    <section-center>
       <heading>Skills</heading>
       <div class="skills-content">
         <skill-category
@@ -20,20 +21,12 @@ import { SkillCategoryComponent } from './skill-category.component';
           [skills]="['React Native', 'State management (Redux)', 'App Publishing (EAS)']"
         />
       </div>
-    </div>
+    </section-center>
   `,
   styles: [
     `
       :host {
         padding: 0, 80px;
-      }
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        gap: 50px;
       }
       .skills-content {
         display: flex;
@@ -45,6 +38,6 @@ import { SkillCategoryComponent } from './skill-category.component';
       }
     `,
   ],
-  imports: [HeadingComponent, SkillCategoryComponent],
+  imports: [HeadingComponent, SkillCategoryComponent, SectionCenterComponent],
 })
 export class SkillsComponent {}

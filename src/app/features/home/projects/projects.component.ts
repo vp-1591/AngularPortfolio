@@ -4,73 +4,68 @@ import { ProjectComponent } from './project.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
 
 @Component({
   selector: 'projects',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <div class="center">
-    <heading>Projects</heading>
-    @if (isMobileLayout()) {
-    <div class="scroll-wrapper">
-      <project
-        imageUri="assets/projects/portfolio.png"
-        title="Portfolio Website"
-        description="Angular SPA. High-fidelity Figma UI. A performance-optimized, modern-looking project"
-        [tags]="['Angular', 'TypeScript', 'Figma']"
-        link="https://github.com/vp-1591/AngularPortfolio"
-      />
-      <project
-        imageUri="assets/projects/wallet.png"
-        title="Wallet App"
-        description="Mobile-native DApp Wallet. Integrates WalletConnect/Wagmi for secure, testnet-chain Web3 transactions."
-        [tags]="['React Native', 'Reanimated', 'Web3']"
-        link="https://github.com/vp-1591/WalletApp"
-      />
-      <project
-        imageUri="assets/projects/chat.png"
-        title="Chat Web App"
-        description="Real-time messaging platform. Dynamic Socket.io connection supports live status and instant chat."
-        [tags]="['React', 'Socket.io']"
-        link="https://github.com/vp-1591/chat-app"
-      />
-    </div>
+  template: `
+    <section-center>
+      <heading>Projects</heading>
+      @if (isMobileLayout()) {
+      <div class="scroll-wrapper">
+        <project
+          imageUri="assets/projects/portfolio.png"
+          title="Portfolio Website"
+          description="Angular SPA. High-fidelity Figma UI. A performance-optimized, modern-looking project"
+          [tags]="['Angular', 'TypeScript', 'Figma']"
+          link="https://github.com/vp-1591/AngularPortfolio"
+        />
+        <project
+          imageUri="assets/projects/wallet.png"
+          title="Wallet App"
+          description="Mobile-native DApp Wallet. Integrates WalletConnect/Wagmi for secure, testnet-chain Web3 transactions."
+          [tags]="['React Native', 'Reanimated', 'Web3']"
+          link="https://github.com/vp-1591/WalletApp"
+        />
+        <project
+          imageUri="assets/projects/chat.png"
+          title="Chat Web App"
+          description="Real-time messaging platform. Dynamic Socket.io connection supports live status and instant chat."
+          [tags]="['React', 'Socket.io']"
+          link="https://github.com/vp-1591/chat-app"
+        />
+      </div>
 
-    } @else{
-    <div class="projects-content">
-      <project
-        imageUri="assets/projects/portfolio.png"
-        title="Portfolio Website"
-        description="Angular SPA. High-fidelity Figma UI. A performance-optimized, modern-looking project"
-        [tags]="['Angular', 'TypeScript', 'Figma']"
-        link="https://github.com/vp-1591/AngularPortfolio"
-      />
-      <project
-        imageUri="assets/projects/wallet.png"
-        title="Wallet App"
-        description="Mobile-native DApp Wallet. Integrates WalletConnect/Wagmi for secure, testnet-chain Web3 transactions."
-        [tags]="['React Native', 'Reanimated', 'Web3']"
-        link="https://github.com/vp-1591/WalletApp"
-      />
-      <project
-        imageUri="assets/projects/chat.png"
-        title="Chat Web App"
-        description="Real-time messaging platform. Dynamic Socket.io connection supports live status and instant chat."
-        [tags]="['React', 'Socket.io']"
-        link="https://github.com/vp-1591/chat-app"
-      />
-    </div>
-    }
-  </div>`,
+      } @else{
+      <div class="projects-content">
+        <project
+          imageUri="assets/projects/portfolio.png"
+          title="Portfolio Website"
+          description="Angular SPA. High-fidelity Figma UI. A performance-optimized, modern-looking project"
+          [tags]="['Angular', 'TypeScript', 'Figma']"
+          link="https://github.com/vp-1591/AngularPortfolio"
+        />
+        <project
+          imageUri="assets/projects/wallet.png"
+          title="Wallet App"
+          description="Mobile-native DApp Wallet. Integrates WalletConnect/Wagmi for secure, testnet-chain Web3 transactions."
+          [tags]="['React Native', 'Reanimated', 'Web3']"
+          link="https://github.com/vp-1591/WalletApp"
+        />
+        <project
+          imageUri="assets/projects/chat.png"
+          title="Chat Web App"
+          description="Real-time messaging platform. Dynamic Socket.io connection supports live status and instant chat."
+          [tags]="['React', 'Socket.io']"
+          link="https://github.com/vp-1591/chat-app"
+        />
+      </div>
+      }
+    </section-center>
+  `,
   styles: [
     `
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        gap: 50px;
-      }
       .projects-content {
         gap: 32px;
         display: flex;
@@ -88,13 +83,12 @@ import { map } from 'rxjs';
         padding: 0 15vw;
         scroll-snap-type: x mandatory;
       }
-
       .scroll-wrapper::-webkit-scrollbar {
         display: none;
       }
     `,
   ],
-  imports: [HeadingComponent, ProjectComponent],
+  imports: [HeadingComponent, ProjectComponent, SectionCenterComponent],
 })
 export class ProjectsComponent {
   private breakpointObserver = inject(BreakpointObserver);
