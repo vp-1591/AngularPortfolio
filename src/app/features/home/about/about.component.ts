@@ -5,11 +5,12 @@ import { StatComponent } from './stat.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
 
 @Component({
   selector: 'about',
   template: `
-    <div class="center">
+    <section-center>
       <heading>About</heading>
       <div class="about-content">
         <div class="about-description">
@@ -39,18 +40,10 @@ import { map } from 'rxjs';
           <stat statValue="6+" statLabel="Months Experience" />
         </div>
       </div>
-    </div>
+    </section-center>
   `,
   styles: [
     `
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        gap: 50px;
-      }
       .about-content {
         width: 100%;
         display: flex;
@@ -87,17 +80,13 @@ import { map } from 'rxjs';
           font-size: 16px;
         }
 
-        .center {
-          gap: 12px;
-        }
-
         .about-stats {
           align-items: center;
         }
       }
     `,
   ],
-  imports: [HeadingComponent, TextComponent, StatComponent],
+  imports: [HeadingComponent, TextComponent, StatComponent, SectionCenterComponent],
 })
 export class AboutComponent {
   private breakpointObserver = inject(BreakpointObserver);
