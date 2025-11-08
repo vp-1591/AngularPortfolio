@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TextComponent } from '../../../shared/ui/text.component';
 import { HeadingComponent } from '../../../shared/ui/heading.component';
 import { StatComponent } from './stat.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'about',
@@ -12,8 +15,7 @@ import { StatComponent } from './stat.component';
         <div class="about-description">
           <text
             [styles]="{
-              fontSize: '18px',
-              lineHeight: '30px'
+              lineHeight: isMobileLayout() ? '24px' : '30px'
             }"
             type="Inter"
           >
@@ -23,14 +25,13 @@ import { StatComponent } from './stat.component';
           </text>
           <text
             [styles]="{
-              fontSize: '18px',
-              lineHeight: '30px'
+              lineHeight: isMobileLayout() ? '24px' : '30px'
             }"
             type="Inter"
           >
             I’m focused on writing maintainable code, learning best practices, and growing into a
-            developer who builds scalable, well-designed web applications. My goal is to
-            continuously improve and contribute to real-world projects that make an impact.
+            developer who builds scalable, well-designed applications. My goal is to continuously
+            improve and contribute to real-world projects that make an impact.
           </text>
         </div>
         <div class="about-stats">
@@ -63,14 +64,50 @@ import { StatComponent } from './stat.component';
         display: flex;
         gap: 24px;
         width: 40vw;
+        font-size: 18px;
       }
       .about-stats {
         display: flex;
         flex-direction: column;
         gap: 24px;
       }
+
+      @media (max-width: 768px) {
+        .about-content {
+          flex-direction: column;
+          gap: 32px;
+          padding: 20px 20px 0;
+        }
+
+        .about-description {
+          width: 100%;
+        }
+
+        .about-description {
+          font-size: 16px;
+        }
+
+        .center {
+          gap: 12px;
+        }
+
+        .about-stats {
+          align-items: center;
+        }
+      }
     `,
   ],
   imports: [HeadingComponent, TextComponent, StatComponent],
 })
-export class AboutComponent {}
+export class AboutComponent {
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isMobileLayout = toSignal(
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      // Map the full state object to just the boolean 'matches' value
+      .pipe(map((state) => state.matches)),
+    // Now the initial value only needs to be the boolean type
+    { initialValue: false }
+  );
+}

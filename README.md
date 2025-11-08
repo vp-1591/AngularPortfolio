@@ -1,59 +1,25 @@
 # AngularPortfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+This is a Single-Page Application (SPA) built using the Angular framework and TypeScript to serve as my personal developer portfolio. It is designed to be fully responsive and showcase my key projects, technical skills, and professional experience through a modern, component-based architecture.
 
-## Development server
+![Hero Section Screenshot](Readme_image.png)
 
-To start a local development server, run:
+I chose Angular to demonstrate my proficiency with an enterprise-grade framework, focusing on robust code quality, modularity, and high performance. The framework allows for building complex, feature-rich web applications that reflect current industry standards. The use of TypeScript also ensures strong typing and enhanced code maintainability, emphasizing best practices in modern front-end development.
 
-```bash
-ng serve
-```
+To run the application locally, you must first clone the repository and install the npm dependencies. The deployment process is fully automated for continuous integration and delivery. It uses GitHub Actions in conjunction with the angular-cli-ghpages tool, which automatically builds the production application and publishes it to GitHub Pages upon merging code to the main branch.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Required Code
 
 ```bash
-ng generate component component-name
+# 1. Clone the repository
+git clone https://github.com/vp-1591/AngularPortfolio.git
+
+# 2. Navigate into the project directory
+cd AngularPortfolio
+
+# 3. Install dependencies and run locally
+npm install
+ng serve --open
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The live application is hosted on GitHub Pages: https://vp-1591.github.io/AngularPortfolio/

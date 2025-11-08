@@ -9,6 +9,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       :host {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 18px;
         box-shadow: 0 0 20px var(--primary-color-30);
         padding: 24px;
@@ -16,6 +17,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         border: 1px solid var(--primary-color-30);
         overflow: hidden;
         height: 100%;
+      }
+
+      @media (max-width: 768px) {
+        :host {
+          box-sizing: border-box;
+          width: 100%;
+        }
       }
     `,
   ],

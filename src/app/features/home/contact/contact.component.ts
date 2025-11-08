@@ -28,6 +28,15 @@ import { TextComponent } from '../../../shared/ui/text.component';
         gap: 8px;
         flex: 1;
       }
+
+      @media (max-width: 768px) {
+        :host {
+          width: 70vw;
+          padding: 20px 0;
+          flex-shrink: 0;
+          scroll-snap-align: center; /* or start/end */
+        }
+      }
     `,
   ],
   imports: [CardComponent, TextComponent],
