@@ -19,8 +19,12 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
     </div>
   `,
   styles: `
+    :host{
+        display:flex;
+    }
     .sliding-element {
       transition: opacity 1s ease-out, transform 0.6s ease-out;
+        display:flex;
 
       /* Initial state (hidden and off-screen) */
       /* Note: Overridden when the .slide-in class is NOT present */
