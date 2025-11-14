@@ -18,19 +18,27 @@ import { map } from 'rxjs/operators';
     <div class="nav-links">
       @for (link of navLinks; track link.section) {
       <div class="nav-button" (click)="handleNavClick(link.section)">
-        <text type="Inter" [styles]="{ fontSize: '16px', fontWeight: 500 }">{{ link.label }}</text>
+        <text
+          class="unselectable"
+          type="Inter"
+          unselectable="on"
+          [styles]="{ fontSize: '16px', fontWeight: 500 }"
+          >{{ link.label }}</text
+        >
       </div>
       }
     </div>
     } @else {
     <div class="hamburger-menu" (click)="toggleDrawer()">
-      <text type="Inter" [styles]="{ fontSize: '24px' }">☰</text>
+      <text class="unselectable" type="Inter" [styles]="{ fontSize: '24px' }">☰</text>
     </div>
     <div class="mobile-drawer" [class.open]="isDrawerOpen()">
       @for (link of navLinks; track link.section) {
       <div class="drawer-link" (click)="handleNavClick(link.section)">
         <text
+          unselectable="on"
           type="Inter"
+          class="unselectable"
           [styles]="{
             fontSize: '32px',
             fontWeight: 500,
@@ -67,6 +75,12 @@ import { map } from 'rxjs/operators';
         right: 0;
         bottom: 0;
         z-index: -1;
+      }
+      .unselectable {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
       }
       .logo {
         cursor: pointer;

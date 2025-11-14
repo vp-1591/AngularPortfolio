@@ -13,6 +13,9 @@ import { TextComponent } from '../../../shared/ui/text.component';
         padding: 6px;
         background-color: var(--primary-color-20);
         border-radius: 100px;
+        text-align: center;
+        display: flex;
+        align-items: center;
       }
     `,
   ],
