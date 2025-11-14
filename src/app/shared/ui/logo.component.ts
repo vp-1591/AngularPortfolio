@@ -13,7 +13,7 @@ import { map } from 'rxjs';
     '[style.width.px]': 'size()',
     '[style.height.px]': 'size()',
   },
-  template: ` <text class="logo-text">VA</text> `,
+  template: ` <text class="logo-text unselectable">VA</text> `,
   styles: [
     `
       :host {
@@ -23,6 +23,12 @@ import { map } from 'rxjs';
         color: var(--primary-color);
       }
 
+      .unselectable {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+      }
       @media (max-width: 768px) {
         .logo-text {
           font-size: 14px;
