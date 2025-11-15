@@ -24,18 +24,20 @@ import { ScrollService } from '../../scroll.service';
       <about id="about" class="section" />
       <projects id="projects" class="section" />
       <skills id="skills" class="section" />
-      <contacts id="contact" class="section last" />
-      <div class="spacer"></div>
+      <contacts id="contact" class="last" />
     </article>
   `,
   styles: [
     `
       .section {
         display: block;
-        padding: 25vh 80px 25vh;
+        padding: 25vh 0 25vh;
+        scroll-snap-align: start;
       }
       .last {
-        padding-bottom: 20vh;
+        padding: 25vh 0 0;
+        display: block;
+        scroll-snap-align: start;
       }
       .hero-svg-layer {
         position: absolute;
@@ -47,7 +49,6 @@ import { ScrollService } from '../../scroll.service';
         width: 75vw;
         height: 55vw;
         object-fit: cover;
-
         z-index: 1;
 
         opacity: 0.8;
@@ -57,16 +58,13 @@ import { ScrollService } from '../../scroll.service';
         width: 100%;
         gap: 70vh;
       }
-      .spacer {
-        height: 10vh;
-      }
       @media (max-width: 768px) {
         .hero-svg-layer {
           width: 100vw;
           height: 75vw;
         }
         .section {
-          padding: 25vh 20px 25vh;
+          padding: 25vh 0 25vh;
         }
       }
     `,
