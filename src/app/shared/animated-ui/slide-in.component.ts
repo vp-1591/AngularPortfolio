@@ -20,6 +20,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   `,
   styles: `
     :host{
+        overflow-x: hidden;
         display:flex;
     }
     .sliding-element {
