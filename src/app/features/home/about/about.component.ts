@@ -6,42 +6,45 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
+import { SlideInComponent } from '../../../shared/animated-ui/slide-in.component';
 
 @Component({
   selector: 'about',
   template: `
     <section-center>
       <heading>About</heading>
-      <div class="about-content">
-        <div class="about-description">
-          <text
-            [styles]="{
-              lineHeight: isMobileLayout() ? '24px' : '30px'
-            }"
-            type="Inter"
-          >
-            I’m an informatics student and aspiring Frontend Developer with hands-on experience in
-            React, React Native, and TypeScript. I enjoy transforming ideas into clean, responsive,
-            and user-friendly interfaces.
-          </text>
-          @if (!isMobileLayout()) {
-          <text
-            [styles]="{
-              lineHeight: '30px'
-            }"
-            type="Inter"
-          >
-            I’m focused on writing maintainable code, learning best practices, and growing into a
-            developer who builds scalable, well-designed applications. My goal is to continuously
-            improve and contribute to real-world projects that make an impact.
-          </text>
-          }
+      <slide-in>
+        <div class="about-content">
+          <div class="about-description">
+            <text
+              [styles]="{
+                lineHeight: isMobileLayout() ? '24px' : '30px'
+              }"
+              type="Inter"
+            >
+              I’m an informatics student and aspiring Frontend Developer with hands-on experience in
+              React, React Native, and TypeScript. I enjoy transforming ideas into clean,
+              responsive, and user-friendly interfaces.
+            </text>
+            @if (!isMobileLayout()) {
+            <text
+              [styles]="{
+                lineHeight: '30px'
+              }"
+              type="Inter"
+            >
+              I’m focused on writing maintainable code, learning best practices, and growing into a
+              developer who builds scalable, well-designed applications. My goal is to continuously
+              improve and contribute to real-world projects that make an impact.
+            </text>
+            }
+          </div>
+          <div class="about-stats">
+            <stat statValue="3+" statLabel="Projects Completed" />
+            <stat statValue="6+" statLabel="Months Experience" />
+          </div>
         </div>
-        <div class="about-stats">
-          <stat statValue="3+" statLabel="Projects Completed" />
-          <stat statValue="6+" statLabel="Months Experience" />
-        </div>
-      </div>
+      </slide-in>
     </section-center>
   `,
   styles: [
@@ -89,7 +92,13 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
       }
     `,
   ],
-  imports: [HeadingComponent, TextComponent, StatComponent, SectionCenterComponent],
+  imports: [
+    HeadingComponent,
+    TextComponent,
+    StatComponent,
+    SectionCenterComponent,
+    SlideInComponent,
+  ],
 })
 export class AboutComponent {
   private breakpointObserver = inject(BreakpointObserver);

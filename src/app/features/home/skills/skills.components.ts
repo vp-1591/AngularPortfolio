@@ -33,7 +33,7 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
         flex-direction: row;
         gap: 32px;
         align-items: stretch;
-        width: 100%;
+        width: 90%;
         justify-content: center;
       }
     `,

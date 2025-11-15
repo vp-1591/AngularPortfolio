@@ -5,6 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { SectionCenterComponent } from '../../../shared/ui/section-center.component';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 @Component({
   selector: 'contacts',
@@ -47,9 +48,15 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
         </a>
       </div>
     </section-center>
+
+    <div class="spacer"></div>
+    <app-footer />
   `,
   styles: [
     `
+      .spacer {
+        height: 30vh;
+      }
       .contacts-content {
         display: flex;
         flex-direction: row;
@@ -81,7 +88,7 @@ import { SectionCenterComponent } from '../../../shared/ui/section-center.compon
       }
     `,
   ],
-  imports: [HeadingComponent, ContactComponent, SectionCenterComponent],
+  imports: [HeadingComponent, ContactComponent, SectionCenterComponent, FooterComponent],
 })
 export class ContactsComponent {
   private breakpointObserver = inject(BreakpointObserver);

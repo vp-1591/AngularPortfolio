@@ -12,6 +12,9 @@ import { TextComponent } from '../ui/text.component';
   `,
   styles: [
     `
+      :host {
+        max-height: 5vh;
+      }
       footer {
         display: flex;
         justify-content: center;
