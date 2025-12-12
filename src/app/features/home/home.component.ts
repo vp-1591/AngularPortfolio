@@ -33,11 +33,13 @@ import { ScrollService } from '../../scroll.service';
         display: block;
         padding: 25vh 0 25vh;
         scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
       .last {
         padding: 25vh 0 0;
         display: block;
         scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
       .hero-svg-layer {
         position: absolute;
